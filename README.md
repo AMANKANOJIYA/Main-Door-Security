@@ -22,14 +22,14 @@
 
 ## FLow Chart
 
-![Flow Chart](/images folder/chart.png)
+![Flow Chart](https://github.com/AMANKANOJIYA/Main-Door-Security/image folder/chart.png)
 
 This is the flow chart to the code we can see all the test cases are been tested Properly 
 we can add much more to this 
 
 ## Circuit Diagram
 
-![Circuit Diagram](/images folder/circuit.jpg)
+![Circuit Diagram](https://github.com/AMANKANOJIYA/Main-Door-Security/images folder/circuit.jpg)
 
 This is the Circuit Diagram As per code In Future Image will be Imporved 
 
