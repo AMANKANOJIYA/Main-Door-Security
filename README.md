@@ -22,7 +22,7 @@
 
 ## FLow Chart
 
-![Flow Chart](https://github.com/AMANKANOJIYA/Main-Door-Security/blob/master/content/chart.png)
+![Flow Chart](https://github.com/AMANKANOJIYA/Main-Door-Security/blob/master/content/chart.jpg)
 
 This is the flow chart to the code we can see all the test cases are been tested Properly 
 we can add much more to this 
