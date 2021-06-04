@@ -1,0 +1,44 @@
+<!-- This is javascript Based Code To operate Your Door security from a web app -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title to your Web Page -->
+    <title>Automatic Main Gate Security Systum</title>
+
+    <!-- Attaching The Boltiot script File as we learned in Training -->
+    <script type="text/javascript" src="https://cloud.boltiot.com/static/js/boltCommands.js"></script>
+
+    <!-- This is To connect our api Key and name of our Device -->
+    <script>
+        setKey('{{ApiKey}}', '{{Name}}');
+    </script>
+
+    <link rel="stylesheet" href="images folder/style.css">
+</head>
+
+<!-- Main Html screen -->
+
+<body>
+    <div id="success" class="alert">Success | You are success Fully connected to your Door Security
+        <span>&Cross;</span>
+    </div>
+    <div id="error" class="alert">Alert | Pls Check your username and Password Agian <span>&Cross;</span></div>
+    <div id="security"></div>
+    <div id="open_close"></div>
+    <div id="body"></div>
+    <div class="modal_parant">
+        <div id="modal">
+            <h3 id="text"></h3>
+            <span draggable="true" id="close">&times;</span>
+            <p id="para"></p>
+        </div>
+    </div>
+    <!-- main script tag to handel all the actions on the web page  -->
+    <script src="images folder/script.js"></script>
+</body>
+
+</html>

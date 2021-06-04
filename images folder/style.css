@@ -1,0 +1,279 @@
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            background: url("https://images.pexels.com/photos/714258/pexels-photo-714258.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260") 
+            no-repeat;
+            /* background: url("ji.jpeg") no-repeat; */
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .box h2 {
+            color: #fff;
+            margin: 0 0 30px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+        .box .inputbox {
+            position: relative;
+        }
+
+        .box .inputbox input {
+            width: 100%;
+            padding: 10px 5px;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            background-color: transparent;
+        }
+
+        .box .inputbox label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            letter-spacing: 2px;
+            padding: 10px 5px;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: 0.5s;
+        }
+
+        .box .inputbox input:focus~label,
+        .box .inputbox input:valid~label {
+            top: -20px;
+            left: 0;
+            color: #03a9f4;
+            font-size: 14px;
+        }
+
+        #submit {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            background-color: #03a9f4;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #security {
+            width: 45vw;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 5% 27%;
+        }
+
+        #form {
+            width: 90%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .alert {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 7vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-weight: 800;
+        }
+
+        /* This Tag Is used When we have to adjust the DOM or Html as per the screen size */
+        @media only screen and (max-width:610px) {
+            .alert {
+                overflow: scroll;
+                overflow-y: scroll;
+                overflow-x: scroll;
+                top: 5px;
+                padding: 10px;
+                padding-top: 30px;
+                left: 3px;
+            }
+
+            #modal p {
+                overflow: scroll;
+                overflow-y: scroll;
+                overflow-x: scroll;
+            }
+
+            #close {
+                display: none;
+            }
+
+            #success {
+                padding-top: 50px;
+            }
+        }
+
+        #success {
+            color: rgb(0, 121, 0);
+            display: none;
+            background-color: rgb(108, 255, 108);
+        }
+
+        div span {
+            float: right;
+            margin: auto 60px;
+            font-size: 30px;
+            cursor: pointer;
+            color: rgb(0, 121, 0);
+        }
+
+        #success span {
+            color: rgb(0, 121, 0);
+        }
+
+        #error span {
+            color: rgb(146, 1, 1);
+        }
+
+        #error {
+            color: rgb(146, 1, 1);
+            display: none;
+            background-color: rgb(255, 102, 102);
+        }
+
+        #container {
+            /* display: none; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: black;
+            opacity: 0.7;
+            border-radius: 10px;
+            transform: translate(-50%, -50%);
+            height: 50%;
+            width: 50%;
+        }
+
+        #container button {
+            width: 50%;
+            height: 10%;
+            border-radius: 10px;
+            margin: 14px 0px;
+            letter-spacing: 1px;
+            font-size: larger;
+            font-weight: bolder;
+        }
+
+        #container button:hover {
+            color: white;
+            background-color: black;
+        }
+
+        /* modal style */
+        .modal_parant {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            height: 100vh;
+            width: 100%;
+            display: none;
+        }
+
+        #modal {
+            width: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            transform: translate(-50%, -50%);
+            height: 200px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+            animation-name: modal;
+            animation-duration: 1s;
+            transition: ease-in-out 1s;
+        }
+
+        /* Animation to modale Which drops down */
+        @keyframes modal {
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 50%
+            }
+        }
+
+        #modal h3 {
+            font-size: 1.5em;
+            padding-top: 20px;
+        }
+
+        #modal p {
+            font-size: 20px;
+            padding: 26px;
+            scroll-padding: 0;
+        }
+
+        #modal span {
+            font-size: 40px;
+            position: absolute;
+            top: 10px;
+            right: 30px;
+            cursor: pointer;
+        }
+
+        #body {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 1s;
+            opacity: 0.4;
+            z-index: 2;
+        }
