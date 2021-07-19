@@ -1,6 +1,8 @@
 # -------------------------------------IMPORT AREA------------------------------
 from boltiot import Bolt,Sms
 import conf, json, time, math, statistics
+import requests      
+import json                                     
 # -------------------------------------SECURITY---------------------------------
 mybolt = Bolt(conf.API_KEY, conf.DEVICE_ID)
 response=mybolt.isOnline() 
@@ -8,6 +10,26 @@ print(response)
 sms = Sms(conf.SSID, conf.AUTH_TOKEN, conf.TO_NUMBER, conf.FROM_NUMBER)
 history_data=[]
 # ------------------------------------FUNCTION AREA-----------------------------
+def send_telegram_message(message):
+    """Sends message via Telegram"""
+    url = "https://api.telegram.org/" + conf.TELEGRAM_BOT_ID + "/sendMessage"
+    data = {
+        "chat_id": conf.TELEGRAM_CHAT_ID,
+        "text": message
+    }
+    try:
+        response = requests.request(
+            "POST",
+            url,
+            params=data
+        )
+        telegram_data = json.loads(response.text)
+        return telegram_data["ok"]
+    except Exception as e:
+        print("An error occurred in sending the alert message via Telegram")
+        print(e)
+        return False
+
 def exit_security():
     a=exit()
     print(eval(a))
@@ -54,15 +76,20 @@ while True:
                     print(mybolt.digitalWrite('3',"LOW"))
                     time.sleep(5)
                     print(mybolt.digitalWrite('2',"LOW"))
+                    telegram_status = send_telegram_message("Main Door Opened ")
                 elif open_choise==2:
                     # start the close moter
                     print(mybolt.digitalWrite('3',"HIGH"))
                     print(mybolt.digitalWrite('2',"LOW"))
                     time.sleep(5)
                     print(mybolt.digitalWrite('3',"LOW"))
+                    telegram_status = send_telegram_message("Main Door Closed ")
                 elif open_choise==3:
                     # help to make them understand the working
-                    print("help")
+                    print("\n\t===============  HELP  ===============")
+                    message="\t THis System can be used to login to your remote controled door\n\t you can login using the provided username and password \n\t Type the number as the input to access the respected service\n \t Thank you !!\n"
+                    print(message)
+                    telegram_status = send_telegram_message(message)
                 elif open_choise==4:
                     # taking input for exit the scurity
                     exit_choise=str(input("\n\tIf You Realy Want To Exit (y/n) "))
@@ -76,7 +103,8 @@ while True:
                         print('\n\n*********************************YOU ENTERED A WRONG CHOOISE PLS TRY AGAIN***************************                          ******\n\n')
                         continue
                 else:
-                    print('\n\n*********************************YOU ENTERED A WRONG CHOOISE PLS TRY AGAIN*********************************                     \n\n')                    
+                    print('\n\n*********************************YOU ENTERED A WRONG CHOOISE PLS TRY AGAIN*********************************                     \n\n')  
+                    telegram_status=send_telegram_message("*********************************YOU ENTERED A WRONG CHOOISE PLS TRY AGAIN*********************************                     ")                  
                     continue
         else:
             if wrong<3:
@@ -92,6 +120,8 @@ while True:
                     print ("Error occured: Below are the details")
                     print (e)
                 print("ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert                     ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert                     ALert ALert ALert ALert ALert ALert ")
+                telegram_status = send_telegram_message("ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALertALert ALert ALert ALert ALert ALert ALert ALert ALert ALertALert ALert ALert ALert ALert ALert ")
+                print("This is the Telegram status:", telegram_status)
                 print(mybolt.digitalWrite('4',"HIGH"))
                 print(mybolt.digitalWrite('1','LOW'))
                 print(mybolt.digitalWrite('0','LOW'))
