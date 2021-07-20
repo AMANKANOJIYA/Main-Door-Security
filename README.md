@@ -31,6 +31,7 @@ we can add much more to this
 ## Circuit Diagram
 
 ![Circuit Diagram](https://github.com/AMANKANOJIYA/Main-Door-Security/blob/master/content/circuit.jpg)
+![Circuit Diagram](https://github.com/AMANKANOJIYA/Main-Door-Security/blob/master/content/circuit-real.jpg)
 
 This is the Circuit Diagram As per code In Future Image will be Imporved
 
