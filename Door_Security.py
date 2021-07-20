@@ -6,7 +6,7 @@ import json
 # -------------------------------------SECURITY---------------------------------
 mybolt = Bolt(conf.API_KEY, conf.DEVICE_ID)
 response=mybolt.isOnline() 
-print(response)
+temp=response
 sms = Sms(conf.SSID, conf.AUTH_TOKEN, conf.TO_NUMBER, conf.FROM_NUMBER)
 history_data=[]
 # ------------------------------------FUNCTION AREA-----------------------------
@@ -47,7 +47,7 @@ print('=========================================================================
 print('\n\n')
 wrong=0
 while True:
-    print(mybolt.digitalWrite('0','HIGH')) #start the red light of the door
+    temp=mybolt.digitalWrite('0','HIGH') #start the red light of the door
     print("     1. Connect To Door")
     print('     2. Exit\n')
     # taking the input option
@@ -61,8 +61,8 @@ while True:
         password=str(input("\n                 PASSWORD  -->>>  "))
         if (username==conf.USERNAME and password==conf.PASSWORD):
             # turn off the red light and turn on the green light
-            print(mybolt.digitalWrite('0','LOW'))
-            print(mybolt.digitalWrite('1','HIGH'))
+            temp=mybolt.digitalWrite('0','LOW')
+            temp=mybolt.digitalWrite('1','HIGH')
             while True:
                 print('\n\n     1. OPEN THE DOOR')
                 print('     2. CLOSE THE DOOR')
@@ -72,17 +72,18 @@ while True:
                 # taking the choise as input
                 if open_choise==1:
                     # start the open moter
-                    print(mybolt.digitalWrite('2',"HIGH"))
-                    print(mybolt.digitalWrite('3',"LOW"))
+                    temp=mybolt.digitalWrite('2',"HIGH")
+                    temp=mybolt.digitalWrite('3',"LOW")
                     time.sleep(5)
-                    print(mybolt.digitalWrite('2',"LOW"))
+                    temp=mybolt.digitalWrite('2',"LOW")
+                    print("Main Door Opened ")
                     telegram_status = send_telegram_message("Main Door Opened ")
                 elif open_choise==2:
                     # start the close moter
-                    print(mybolt.digitalWrite('3',"HIGH"))
-                    print(mybolt.digitalWrite('2',"LOW"))
+                    temp=mybolt.digitalWrite('3',"HIGH")
+                    temp=mybolt.digitalWrite('2',"LOW")
                     time.sleep(5)
-                    print(mybolt.digitalWrite('3',"LOW"))
+                    temp=mybolt.digitalWrite('3',"LOW")
                     telegram_status = send_telegram_message("Main Door Closed ")
                 elif open_choise==3:
                     # help to make them understand the working
@@ -94,8 +95,8 @@ while True:
                     # taking input for exit the scurity
                     exit_choise=str(input("\n\tIf You Realy Want To Exit (y/n) "))
                     if (exit_choise=='y' or exit_choise=="Y"):
-                        print(mybolt.digitalWrite('1','LOW'))
-                        print(mybolt.digitalWrite('0','LOW'))
+                        temp=mybolt.digitalWrite('1','LOW')
+                        temp=mybolt.digitalWrite('0','LOW')
                         exit_security()
                     elif (exit_choise=='n' or exit_choise=="N"):
                         continue
@@ -111,22 +112,22 @@ while True:
                 wrong=wrong+1
             else:
                 # if the man is fake making the alert alarm on
-                try:
-                    print("Making request to Twilio to send a SMS")
-                    response = sms.send_sms("I would Like to inform You That Any One is trying To Get In to Your Doore Security")
-                    print("Response received from Twilio is: " + str(response))
-                    print("Status of SMS at Twilio is :" + str(response.status))
-                except Exception as e: 
-                    print ("Error occured: Below are the details")
-                    print (e)
-                print("ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert                     ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert                     ALert ALert ALert ALert ALert ALert ")
-                telegram_status = send_telegram_message("ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALert ALertALert ALert ALert ALert ALert ALert ALert ALert ALert ALertALert ALert ALert ALert ALert ALert ")
+                # try:
+                #     print("Making request to Twilio to send a SMS")
+                #     response = sms.send_sms("I would Like to inform You That Any One is trying To Get In to Your Doore Security")
+                #     print("Response received from Twilio is: " + str(response))
+                #     print("Status of SMS at Twilio is :" + str(response.status))
+                # except Exception as e: 
+                #     print ("Error occured: Below are the details")
+                #     print (e)
+                print("🛑🛑🛑🛑🛑🛑🛑🛑 \n Alert ❌❌❌❌❌ Alert \n ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️")
+                telegram_status = send_telegram_message("🛑🛑🛑🛑🛑🛑🛑🛑 \n Alert ❌❌❌❌❌ Alert \n ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️")
                 print("This is the Telegram status:", telegram_status)
-                print(mybolt.digitalWrite('4',"HIGH"))
-                print(mybolt.digitalWrite('1','LOW'))
-                print(mybolt.digitalWrite('0','LOW'))
+                temp=mybolt.digitalWrite('4',"HIGH")
+                temp=mybolt.digitalWrite('1','LOW')
+                temp=mybolt.digitalWrite('0','LOW')
                 time.sleep(10)
-                print(mybolt.digitalWrite('4',"LOW"))
+                mybolt.digitalWrite('4',"LOW")
                 exit_security()
             print('\n\nXXXXXXXXXXXXXXXXXXXXXXXXXXXX   LOGIN UNSUCCESSFULL  XXXXXXXXXXXXXXXXXXX\n\n')
             continue
