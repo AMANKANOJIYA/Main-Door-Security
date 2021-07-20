@@ -84,6 +84,7 @@ while True:
                     temp=mybolt.digitalWrite('2',"LOW")
                     time.sleep(5)
                     temp=mybolt.digitalWrite('3',"LOW")
+                    print("Main Door Closed ")
                     telegram_status = send_telegram_message("Main Door Closed ")
                 elif open_choise==3:
                     # help to make them understand the working
